@@ -28,6 +28,7 @@ public class Klass {
     private double fee;
     private Date created;
     private Date modified;
+    private Teacher teacher;
 
     public Klass() {
     }
@@ -116,5 +117,14 @@ public class Klass {
     }
     public void setModified(Date modified) {
         this.modified = modified;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="teacher_id")
+    public Teacher getTeacher() {
+        return teacher;
+    }
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

@@ -1,12 +1,14 @@
 package com.allstate.entities;
 
 import com.allstate.enums.Genders;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "teachers")
@@ -19,6 +21,7 @@ public class Teacher {
     private Date created;
     private Date modified;
     private int version;
+    private List<Klass> klasses;
 
     public Teacher() {
     }
@@ -92,5 +95,14 @@ public class Teacher {
 
     public void setModified(Date modified) {
         this.modified = modified;
+    }
+
+    @OneToMany(mappedBy = "teacher")
+    @JsonIgnore
+    public List<Klass> getKlasses() {
+        return klasses;
+    }
+    public void setKlasses(List<Klass> klasses) {
+        this.klasses = klasses;
     }
 }

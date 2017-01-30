@@ -5,6 +5,7 @@ import com.allstate.enums.Genders;
 import com.allstate.repositories.ITeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class TeacherService {
@@ -15,14 +16,23 @@ public class TeacherService {
         this.teacherRepository = teacherRepository;
     }
 
-    public Teacher create(String name, Genders gender, int age){
-        Teacher t = new Teacher(name,age,gender);
-        return this.teacherRepository.save(t);
+    public Teacher create(Teacher teacher){
+        return this.teacherRepository.save(teacher);
     }
 
     public Teacher findById(int id){
         return this.teacherRepository.findOne(id);
     }
 
+    public Teacher findByName(String name){
+        return this.teacherRepository.findByName(name);
+    }
 
+    public List<Teacher> findByGender(Genders gender){
+        return this.teacherRepository.findByGender(gender);
+    }
+
+    public List<Teacher> findByAgeGreaterThan(int age){
+        return this.teacherRepository.findByAgeGreaterThan(age);
+    }
 }
